@@ -32,9 +32,8 @@ public class ShowCalendar extends ActionBarActivity {
 	    actionBar.setDisplayHomeAsUpEnabled(true); 
 		
 		list = (ListView) findViewById(R.id.listView);
-		String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-		        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-		        "Linux", "OS/2" };
+		String[] values = new String[] { "8:00am: CS520", "11:59pm: CS581 Homework 1 due", "10:30am: CS594"
+		        };
 	
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, values);

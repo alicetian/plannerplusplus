@@ -5,23 +5,16 @@
         tools:context="com.example.gridview.AddEvent"
     	tools:ignore="MergeRootFrame" >
 
-        <CalendarView
-            android:id="@+id/calendarView1"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" />
-
         <EditText
             android:id="@+id/editText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/calendarView1"
+            android:hint="@+string/class_hint"
             android:ems="10" >
 
-            <requestFocus />
+            
         </EditText>
 
         <EditText
@@ -31,25 +24,41 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/editText1"
+            android:hint="@+string/assignment_hint"
             android:ems="10" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/timeDue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/editText2"
-            android:text="Button" />
+            android:layout_marginTop="7dp"
+            android:background="@color/babyblue"
+            android:text="@+string/time_due" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/dateDue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/button1"
-            android:text="Button" />
+            android:layout_below="@+id/timeDue"
+            android:layout_marginTop="7dp"
+            android:background="@color/babyblue"
+            android:text="@+string/date_due" />
+        
+        <Button
+            android:id="@+id/redirectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/dateDue"
+            android:layout_marginTop="7dp"
+            android:background="@color/babyblue"
+            android:text="@+string/redirect" />
 
     </RelativeLayout>
 

@@ -30,6 +30,14 @@
             android:name="com.example.gridview.AddEvent"
             android:label="@string/title_activity_add_event" >
         </activity>
+        <activity
+            android:name="com.example.gridview.ViewClasses"
+            android:label="@string/title_activity_view_classes" >
+        </activity>
+        <activity
+            android:name="com.example.gridview.AddClass"
+            android:label="@string/title_activity_add_class" >
+        </activity>
     </application>
 
 </manifest>

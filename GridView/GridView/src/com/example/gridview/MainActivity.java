@@ -26,13 +26,29 @@ public class MainActivity extends ActionBarActivity {
 		    GridView gridview = (GridView) findViewById(R.id.gridview);
 		    gridview.setAdapter(new ImageAdapter(this));
 
+		    
+		    
 		    gridview.setOnItemClickListener(new OnItemClickListener() {
 		        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		        	Intent intent = new Intent(MainActivity.this, ShowCalendar.class);
+		        	Intent intent = null;
 			     	   
-		     	    startActivity(intent);
+		     	    
+		            if (position == 0){
+		            	intent = new Intent(MainActivity.this, AddEvent.class);
+		            }
 		            
+		            else if (position == 1){
+		            	intent = new Intent(MainActivity.this, ShowCalendar.class);
+		            }
 		            
+		            else if (position == 3){
+		            	intent = new Intent(MainActivity.this, ViewClasses.class);
+		            }
+		            
+		            else if (position == 2){
+		            	intent = new Intent(MainActivity.this, AddClass.class);
+		            }
+		            startActivity(intent);
 		        }
 		    });
 		}

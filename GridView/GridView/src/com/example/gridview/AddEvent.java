@@ -1,5 +1,7 @@
 package com.example.gridview;
 
+
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -13,28 +15,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class AddEvent extends ActionBarActivity {
 
 	private int hour;
     private int minute;
-    private DatePicker dpResult;
-	private TimePicker timePicker;
+    
+	
 	private int year;
 	private int month;
 	private int day;
 	static final int DATE_DIALOG_ID = 999;
 	static final int TIME_DIALOG_ID = 1000;
-
+	EditText addClass;
+	EditText addAssignment;
+	private Button setTime;
+	private Button setDate;
+	private DBAdapterAddClass db;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_event);
 
 	    Button redirectBtn = (Button) findViewById(R.id.redirectButton);
-	    Button setTime = (Button) findViewById(R.id.timeDue);
-	    Button setDate = (Button) findViewById(R.id.dateDue);
+	    setTime = (Button) findViewById(R.id.timeDue);
+	    setDate = (Button) findViewById(R.id.dateDue);
+	    db = new DBAdapterAddClass(this);
+	    db.open();
+	    
         setTime.setOnClickListener(new View.OnClickListener() {
 			
 			@SuppressWarnings("deprecation")
@@ -54,14 +65,7 @@ setDate.setOnClickListener(new View.OnClickListener() {
 				showDialog(DATE_DIALOG_ID);
 			}
 		});
-	    redirectBtn.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
+	    
 	}
 
 	@Override
@@ -133,21 +137,11 @@ setDate.setOnClickListener(new View.OnClickListener() {
 	            hour = selectedHour;
 	
 	            minute = selectedMinute;
+
 	
-	 
+	            setTime.setText(hour + ":" + minute);
 	
-	            // set current time into textview
-	
-	        
-	
-	            // set current time into timepicker
-	
-	            timePicker.setCurrentHour(hour);
-	
-	            timePicker.setCurrentMinute(minute);
-	
-	 
-	
+	         
 	        }
 	
 	    };
@@ -174,13 +168,53 @@ public void onDateSet(DatePicker view, int selectedYear,
 	month = selectedMonth;
 	day = selectedDay;
 
+	setDate.setText(year + "/" + (month + 1) + "/" + day);
 
-
-	// set selected date into datepicker also
-	dpResult.init(year, month, day, null);
 
 }
 };
 
+/*public void addEvent(View view){
+	
+	addClass = (EditText) findViewById(R.id.addClass);
+    addAssignment = (EditText) findViewById(R.id.addAssignment);
+    String message = addClass.getText().toString();
+    String message1 = addAssignment.getText().toString();
+	
+	switch(view.getId()) {
+	case R.id.redirectButton:
+
+		// insertUser() method will insert a user and return a row ID
+		long id = db.insertClass(message, message1, time, date);
+		
+		// if the row ID is -1 there was some error, otherwise it was successful
+		if (id != -1)
+			displayMessage(message + " inserted!");
+		else
+			displayMessage(message + " wasn't inserted?"); 
+		
+		db.close();
+
+		break;
+	
+}
+	
+	finish();
+	// Show the Up button in the action bar.
+	//setupActionBar();
+	/*Game newGame = new Game();
+	newGame.setName(message);
+	newGame.setDescription(description);
+	newGame.setPrice(Double.parseDouble(price1));
+	newGame.setId(MainActivity.id++);
+    
+    MainActivity.games.add(newGame);
+    
+	
+}*/
+
+private void displayMessage(String msg) {
+	Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+}
 
 }

@@ -6,7 +6,7 @@
     	tools:ignore="MergeRootFrame" >
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/addClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -18,12 +18,12 @@
         </EditText>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/addAssignment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/editText1"
+            android:layout_below="@+id/addClass"
             android:hint="@+string/assignment_hint"
             android:ems="10" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/editText2"
+            android:layout_below="@+id/addAssignment"
             android:layout_marginTop="7dp"
             android:background="@color/babyblue"
             android:text="@+string/time_due" />
@@ -58,7 +58,9 @@
             android:layout_below="@+id/dateDue"
             android:layout_marginTop="7dp"
             android:background="@color/babyblue"
-            android:text="@+string/redirect" />
+            android:onClick="addGame"
+            android:text="Ok"
+             />
 
     </RelativeLayout>
 

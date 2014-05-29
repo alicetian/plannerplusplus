@@ -21,4 +21,7 @@
 
     <string name="title_activity_add_class">AddClass</string>
 
+    <string name="add_time">Enter Class Times</string>
+	<string name="days_attending">Enter Days of Class ex. "Monday, Wednesday"</string>
+	
 </resources>

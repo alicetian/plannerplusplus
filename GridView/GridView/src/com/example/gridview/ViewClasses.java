@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.model.Classes;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,10 +40,34 @@ public class ViewClasses extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 			    // When clicked, show a toast with the TextView text
+				
+				Classes classes = (Classes)parent.getAdapter().getItem(position);
+			    Intent intent = new Intent(ViewClasses.this, EditClass.class);
+			    intent.putExtra("class_id", classes.getId());
+			    intent.putExtra("class_name", classes.getClassName());
+			    intent.putExtra("class_desc", classes.getDescription());
+			    intent.putExtra("class_times", classes.getTime());
+			    intent.putExtra("class_days", classes.getDays());
+			    startActivity(intent);
+			    
 			    
 			}
 		});
 
 	}
+	public void onResume(){
+		super.onResume();
+		db.open();
+		classSchedule = db.getAllClasses();
+		
+		setListAdapter(new ArrayAdapter<Classes>(this, R.layout.list_classes, classSchedule));
+		
+		
+	}
+	protected void onPause() {
+	    super.onPause();
+	    	
+	    db.close();
+	  }
 
 }

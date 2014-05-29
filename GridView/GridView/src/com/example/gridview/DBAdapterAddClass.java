@@ -148,6 +148,19 @@ public class DBAdapterAddClass {
 		return db.insert(DB_TABLE2, null, vals);
 	}
 	
+	public long updateClass(Classes classes){
+		System.out.println(classes.getId() + " " + classes.getClassName() + classes.getDescription() 
+				+classes.getDays() + classes.getTime() );
+		ContentValues vals = new ContentValues();
+		vals.put(KEY_Class, classes.getClassName());
+		vals.put(KEY_Desc, classes.getDescription());
+		vals.put(KEY_Days, classes.getDays());
+		vals.put(KEY_Time, classes.getTime());
+		return db.update(DB_TABLE, vals,  " _id "+" = "
+		+ classes.getId(), null );
+		
+	}
+	
 	  public List<Homework> getReviews(int id) {
 		    List<Homework> reviews = new ArrayList<Homework>();
 		    
@@ -202,7 +215,7 @@ public class DBAdapterAddClass {
 
 		  private Classes cursorToClass(Cursor cursor) {
 		    Classes c = new Classes();
-		    c.setId(Integer.parseInt(cursor.getString(0)));
+		    c.setId(cursor.getInt(0));
 		    c.setClassName(cursor.getString(1));
 		    c.setDescription(cursor.getString(2));
 		    c.setDays(cursor.getString(3));

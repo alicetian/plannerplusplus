@@ -8,6 +8,18 @@ public class Classes {
 	private String days;
 	private String time;
 	
+	public Classes(){
+		
+	}
+	public Classes(int newId, String newCN, String desc, String newDays, String newTime){
+		
+		this.id = newId;
+		this.className = newCN;
+		this.description = desc;
+		this.days = newDays;
+		this.time = newTime;
+		
+	}
 	public int getId() {
 		return id;
 	}
@@ -40,7 +52,7 @@ public class Classes {
 	}
 	@Override
     public String toString() {
-      return className + " " + description + " " + days + " " + time;
+      return id + " " + className + " " + description + " " + days + " " + time;
     }
 	
 }

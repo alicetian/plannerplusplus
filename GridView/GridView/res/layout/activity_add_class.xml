@@ -52,6 +52,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/daysOfClass"
         android:onClick="addClass"
-        android:text="Add" />
+        android:text="Add"
+        android:background="@drawable/sample" />
 
 </RelativeLayout>

@@ -52,7 +52,7 @@ public class Classes {
 	}
 	@Override
     public String toString() {
-      return id + " " + className + " " + description + " " + days + " " + time;
+      return "Class: " + className + " " + description + " Days: " + days + " Class Time: " + time;
     }
 	
 }

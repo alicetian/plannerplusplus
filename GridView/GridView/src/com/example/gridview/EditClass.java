@@ -47,7 +47,7 @@ public class EditClass extends ActionBarActivity {
         classTime = intent.getStringExtra("class_times");
         classDays = intent.getStringExtra("class_days");
         
-        editClass.setText(classId + " " + className);
+        editClass.setText(className);
         editDesc.setText(classDesc);
         editTime.setText(classTime);
         editDays.setText(classDays);

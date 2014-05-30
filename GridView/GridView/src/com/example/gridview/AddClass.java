@@ -7,6 +7,8 @@ import com.example.model.Classes;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,6 +32,8 @@ public class AddClass extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_class);
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
 		db = new DBAdapterAddClass(this);
 		db.open();
 		

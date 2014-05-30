@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,7 +30,7 @@ public class ShowCalendar extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_calendar);
 		ActionBar actionBar = getSupportActionBar();
-	    
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
 	    actionBar.setDisplayUseLogoEnabled(false);
 	    actionBar.setDisplayHomeAsUpEnabled(true); 
 		

@@ -2,9 +2,12 @@ package com.example.gridview;
 
 
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +25,8 @@ public class MainActivity extends ActionBarActivity {
 		public void onCreate(Bundle savedInstanceState) {
 		    super.onCreate(savedInstanceState);
 		    setContentView(R.layout.activity_main);
-		    
+		    ActionBar actionBar = getSupportActionBar();
+			actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
 		    GridView gridview = (GridView) findViewById(R.id.gridview);
 		    gridview.setAdapter(new ImageAdapter(this));
 

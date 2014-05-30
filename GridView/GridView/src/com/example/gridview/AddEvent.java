@@ -5,8 +5,11 @@ package com.example.gridview;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,7 +42,8 @@ public class AddEvent extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_event);
-
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
 	    Button redirectBtn = (Button) findViewById(R.id.redirectButton);
 	    setTime = (Button) findViewById(R.id.timeDue);
 	    setDate = (Button) findViewById(R.id.dateDue);

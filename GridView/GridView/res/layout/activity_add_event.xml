@@ -59,7 +59,7 @@
             android:layout_below="@+id/dateDue"
             android:layout_marginTop="7dp"
             android:background="@color/babyblue"
-            android:onClick="addGame"
+            android:onClick="addEvent"
             android:text="Ok"
              />
 

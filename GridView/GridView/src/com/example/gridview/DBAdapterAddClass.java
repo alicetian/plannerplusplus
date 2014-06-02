@@ -53,7 +53,7 @@ public class DBAdapterAddClass {
 	// a SQL statement to create a new table
 	private static final String DB_Class = 
 		"CREATE TABLE classes (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-		 "class TEXT NOT NULL, description TEXT NOT NULL, days TEXT NOT NULL, time TEXT NOT NULL);";
+		 "class TEXT NOT NULL, description TEXT NOT NULL, days TEXT NOT NULL, time TIME NOT NULL);";
 	private static final String DB_HW = 
 			"CREATE TABLE assignments (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 			 "class TEXT NOT NULL, description TEXT NOT NULL, time TEXT NOT NULL, dateDue date NOT NULL);";
@@ -93,7 +93,7 @@ public class DBAdapterAddClass {
     private DatabaseHelper helper;
     private SQLiteDatabase db;
     private String[] allColumns = { KEY_ROWID, KEY_Class, KEY_Desc, KEY_Days, KEY_Time};
-    private String[] hwList = { HW_ID, HW_Class, HW_Desc, HW_Time};
+    private String[] hwList1 = { HW_ID, HW_Class, HW_Desc, HW_Time, HW_Date};
 
     // DBAdapter class constructor
 	public DBAdapterAddClass (Context c) {
@@ -161,21 +161,21 @@ public class DBAdapterAddClass {
 		
 	}
 	
-	  public List<Homework> getReviews(int id) {
-		    List<Homework> reviews = new ArrayList<Homework>();
+	  public List<Homework> getAssignments(String date) {
+		    List<Homework> homework = new ArrayList<Homework>();
 		    
 		    Cursor cursor = db.query(DB_TABLE2,
-		    	hwList, HW_ID + " = " + id , null, null, null, null);
-
+		    	hwList1, HW_Date + " = " + date  , null, null, null, null);
+		    	
 		    cursor.moveToFirst();
 		    while (!cursor.isAfterLast()) {
-		      Homework review = cursorToHw(cursor);
-		      reviews.add(review);
+		      Homework hw = cursorToHw(cursor);
+		      homework.add(hw);
 		      cursor.moveToNext();
 		    }
 		    // Make sure to close the cursor
 		    cursor.close();
-		    return reviews;
+		    return homework;
 		  }
 
 		  private Homework cursorToHw(Cursor cursor) {
@@ -184,6 +184,7 @@ public class DBAdapterAddClass {
 		    hw.setClassName(cursor.getString(1));
 		    hw.setDescription(cursor.getString(2));
 		    hw.setTime(cursor.getString(3));
+		    hw.setDate(cursor.getString(4));
 		    return hw;
 		  }
 	/** Authenticate a user by querying the table to see

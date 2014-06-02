@@ -1,5 +1,9 @@
 package com.example.gridview;
 
+import java.util.List;
+
+import com.example.model.Homework;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,30 +21,68 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
+import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class ShowCalendar extends ActionBarActivity {
 	
 	private ListView list;
-	
+	private DBAdapterAddClass db;
+	private CalendarView cal;
+	private List<Homework> values1;
+	private ArrayAdapter<Homework> adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_calendar);
+		db = new DBAdapterAddClass(this);
+	    db.open();
+	    
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
 	    actionBar.setDisplayUseLogoEnabled(false);
 	    actionBar.setDisplayHomeAsUpEnabled(true); 
-		
+		cal = (CalendarView) findViewById(R.id.calendarView);
 		list = (ListView) findViewById(R.id.listView);
-		String[] values = new String[] { "8:00am: CS520", "11:59pm: CS581 Homework 1 due", "10:30am: CS594"
+		String[] values = new String[] { "Pick a date"
 		        };
+		
+		
+		cal.setOnDateChangeListener(new OnDateChangeListener() {
+			
+		@Override
+		public void onSelectedDayChange(CalendarView view, int year, int month,
+				int dayOfMonth) {
+			// TODO Auto-generated method stub
+			int month1 = month + 1;
+			
+			String date = year + "-" + month1 + "-" + dayOfMonth;
+			values1 = db.getAssignments(date);
+			
+			/*Toast.makeText(getBaseContext(),"Selected Date is\n\n"
+				+dayOfMonth+" : "+month1+" : "+year ,
+				Toast.LENGTH_LONG).show();*/
+			
+			adapter = new ArrayAdapter<Homework>(ShowCalendar.this,
+					android.R.layout.simple_list_item_1, values1);
+			list.setAdapter(adapter);
+		}
+	});
 	
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, values);
-		list.setAdapter(adapter);
+		
+		if(values1 == null){
+			
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					android.R.layout.simple_list_item_1, values);
+			list.setAdapter(adapter);
+			
+			
+		}
+		
 		
 		
 		

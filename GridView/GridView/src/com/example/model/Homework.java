@@ -6,12 +6,19 @@ public class Homework {
 	private String className;
 	private String description;
 	private String time;
+	private String date;
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 	public Homework(){
 		
 	}
-	public Homework(int id, String cN, String desc, String nTime){
+	public Homework(int newid, String cN, String desc, String nTime){
 		
-		this.id = id;
+		this.id = newid;
 		this.className = cN;
 		this.description = desc;
 		this.time = nTime;
@@ -44,6 +51,9 @@ public class Homework {
 		this.time = time;
 	}
 	
-	
+	@Override
+    public String toString() {
+      return "Class: " + className + " " + description + " Date: " + date + " Class Time: " + time;
+    }
 
 }

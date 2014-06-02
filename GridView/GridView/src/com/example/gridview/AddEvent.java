@@ -166,56 +166,51 @@ setDate.setOnClickListener(new View.OnClickListener() {
         = new DatePickerDialog.OnDateSetListener() {
 
 // when dialog box is closed, below method will be called.
-public void onDateSet(DatePicker view, int selectedYear,
-		int selectedMonth, int selectedDay) {
-	year = selectedYear;
-	month = selectedMonth;
-	day = selectedDay;
-
-	setDate.setText(year + "/" + (month + 1) + "/" + day);
-
-
-}
-};
-
-/*public void addEvent(View view){
+	public void onDateSet(DatePicker view, int selectedYear,
+			int selectedMonth, int selectedDay) {
+		year = selectedYear;
+		month = selectedMonth;
+		day = selectedDay;
 	
-	addClass = (EditText) findViewById(R.id.addClass);
-    addAssignment = (EditText) findViewById(R.id.addAssignment);
-    String message = addClass.getText().toString();
-    String message1 = addAssignment.getText().toString();
+		setDate.setText(year + "-" + (month + 1) + "-" + day);
 	
-	switch(view.getId()) {
-	case R.id.redirectButton:
-
-		// insertUser() method will insert a user and return a row ID
-		long id = db.insertClass(message, message1, time, date);
+	
+	}
+	};
+	public void addEvent(View view){
+	
+		addClass = (EditText) findViewById(R.id.addClass);
+	    addAssignment = (EditText) findViewById(R.id.addAssignment);
+	    setTime = (Button) findViewById(R.id.timeDue);
+	    setDate = (Button) findViewById(R.id.dateDue);
+	    String message = addClass.getText().toString();
+	    String message1 = addAssignment.getText().toString();
+	    String time = setTime.getText().toString();
+	    String date = setDate.getText().toString();
 		
-		// if the row ID is -1 there was some error, otherwise it was successful
-		if (id != -1)
-			displayMessage(message + " inserted!");
-		else
-			displayMessage(message + " wasn't inserted?"); 
-		
-		db.close();
-
-		break;
+		switch(view.getId()) {
+		case R.id.redirectButton:
 	
-}
+			// insertUser() method will insert a user and return a row ID
+			long id = db.insertHW(message, message1, time, date);
+			
+			// if the row ID is -1 there was some error, otherwise it was successful
+			if (id != -1)
+				displayMessage(message + " inserted!");
+			else
+				displayMessage(message + " wasn't inserted?"); 
+			
+			db.close();
+	
+			break;
+		
+	}
 	
 	finish();
-	// Show the Up button in the action bar.
-	//setupActionBar();
-	/*Game newGame = new Game();
-	newGame.setName(message);
-	newGame.setDescription(description);
-	newGame.setPrice(Double.parseDouble(price1));
-	newGame.setId(MainActivity.id++);
-    
-    MainActivity.games.add(newGame);
+
     
 	
-}*/
+}
 
 private void displayMessage(String msg) {
 	Toast.makeText(this, msg, Toast.LENGTH_LONG).show();

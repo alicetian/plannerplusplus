@@ -39,7 +39,7 @@ public class DBAdapterAddClass {
 	public static final String HW_Desc = "description";
 	public static final String HW_Time = "time";
 	public static final String HW_Date = "dateDue";
-	
+
 
 	// define some SQLite database fields
 	// Take a look at your DB on the emulator with:
@@ -260,6 +260,12 @@ public class DBAdapterAddClass {
 		// number of rows
 		return false;
 	}*/
-
+		  
+			  public int delete(int id) {
+			      // db.execSQL("delete from "+DB_TABLE+" where _id='"+id+"'");
+				  return db.delete(DB_TABLE, "_id='"+id+"'", null);
+			        
+			    }
+		  
 }
 

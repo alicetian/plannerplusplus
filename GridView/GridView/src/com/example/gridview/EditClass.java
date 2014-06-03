@@ -123,4 +123,26 @@ public void updateClass(View view){
 	private void displayMessage(String msg) {
 	Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 }
+	
+	public void deleteClass(View view){
+		
+		switch(view.getId()) {
+		case R.id.button1:
+
+			
+			int id = db.delete(classId);
+			
+			
+			if (id != -1)
+				displayMessage(" has been deleted!");
+			else
+				displayMessage(" hasn't been deleted"); 
+			
+			db.close();
+
+			break;
+		
+	}
+		finish();
+	}
 }

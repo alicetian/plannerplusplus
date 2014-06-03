@@ -166,8 +166,8 @@ public class DBAdapterAddClass {
 		ContentValues vals = new ContentValues();
 		vals.put(HW_Class, hw.getClassName());
 		vals.put(HW_Desc, hw.getDescription());
-		vals.put(HW_Time, hw.getDate());
-		vals.put(HW_Date, hw.getTime());
+		vals.put(HW_Time, hw.getTime());
+		vals.put(HW_Date, hw.getDate());
 		return db.update(DB_TABLE2, vals,  " _id "+" = "
 		+ hw.getId(), null );
 		

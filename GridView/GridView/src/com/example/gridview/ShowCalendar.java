@@ -2,6 +2,7 @@ package com.example.gridview;
 
 import java.util.List;
 
+import com.example.model.Classes;
 import com.example.model.Homework;
 
 import android.support.v7.app.ActionBarActivity;
@@ -20,8 +21,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -63,15 +66,17 @@ public class ShowCalendar extends ActionBarActivity {
 			String date = year + "-" + month1 + "-" + dayOfMonth;
 			values1 = db.getAssignments(date);
 			
-			/*Toast.makeText(getBaseContext(),"Selected Date is\n\n"
+			Toast.makeText(getBaseContext(),"Selected Date is\n\n"
 				+dayOfMonth+" : "+month1+" : "+year ,
-				Toast.LENGTH_LONG).show();*/
+				Toast.LENGTH_LONG).show();
 			
 			adapter = new ArrayAdapter<Homework>(ShowCalendar.this,
 					android.R.layout.simple_list_item_1, values1);
 			list.setAdapter(adapter);
 		}
 	});
+		
+	
 	
 		
 		if(values1 == null){
@@ -82,6 +87,24 @@ public class ShowCalendar extends ActionBarActivity {
 			
 			
 		}
+		
+		list.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+			    // When clicked, show a toast with the TextView text
+				
+				Homework hw = (Homework)parent.getAdapter().getItem(position);
+			    Intent intent = new Intent(ShowCalendar.this, EditHw.class);
+			    intent.putExtra("hw_id", hw.getId());
+			    intent.putExtra("hw_name", hw.getClassName());
+			    intent.putExtra("hw_desc", hw.getDescription());
+			    intent.putExtra("hw_time", hw.getTime());
+			    intent.putExtra("hw_date", hw.getDate());
+			    startActivity(intent);
+			    
+			    
+			}
+		});
 		
 		
 		

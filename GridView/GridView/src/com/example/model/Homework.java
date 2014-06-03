@@ -16,12 +16,13 @@ public class Homework {
 	public Homework(){
 		
 	}
-	public Homework(int newid, String cN, String desc, String nTime){
+	public Homework(int newid, String cN, String desc, String nTime, String nDate){
 		
 		this.id = newid;
 		this.className = cN;
 		this.description = desc;
 		this.time = nTime;
+		this.date = nDate;
 		
 	}
 	

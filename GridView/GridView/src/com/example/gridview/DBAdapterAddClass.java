@@ -161,11 +161,23 @@ public class DBAdapterAddClass {
 		
 	}
 	
+	public long updateHw(Homework hw){
+		
+		ContentValues vals = new ContentValues();
+		vals.put(HW_Class, hw.getClassName());
+		vals.put(HW_Desc, hw.getDescription());
+		vals.put(HW_Time, hw.getDate());
+		vals.put(HW_Date, hw.getTime());
+		return db.update(DB_TABLE2, vals,  " _id "+" = "
+		+ hw.getId(), null );
+		
+	}
+	
 	  public List<Homework> getAssignments(String date) {
 		    List<Homework> homework = new ArrayList<Homework>();
 		    
 		    Cursor cursor = db.query(DB_TABLE2,
-		    	hwList1, HW_Date + " = " + date  , null, null, null, null);
+		    	hwList1, HW_Date + " = ? ", new String[] { date }, null, null, null);
 		    	
 		    cursor.moveToFirst();
 		    while (!cursor.isAfterLast()) {

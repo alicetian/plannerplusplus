@@ -42,6 +42,10 @@
             android:name="com.example.gridview.EditClass"
             android:label="@string/title_activity_edit_class" >
         </activity>
+        <activity
+            android:name="com.example.gridview.EditHw"
+            android:label="@string/title_activity_edit_hw" >
+        </activity>
     </application>
 
 </manifest>

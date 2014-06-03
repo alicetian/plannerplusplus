@@ -266,6 +266,12 @@ public class DBAdapterAddClass {
 				  return db.delete(DB_TABLE, "_id='"+id+"'", null);
 			        
 			    }
+			  
+			  public int deleteHw(int id) {
+			      // db.execSQL("delete from "+DB_TABLE+" where _id='"+id+"'");
+				  return db.delete(DB_TABLE2, "_id='"+id+"'", null);
+			        
+			    }
 		  
 }
 

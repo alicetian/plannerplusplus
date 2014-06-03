@@ -121,6 +121,30 @@ public void updateHw(View view){
 	    
 		
 	}
+
+public void deleteHw(View view){
+	
+	switch(view.getId()) {
+	case R.id.button1:
+
+		
+		int id = db.deleteHw(classId);
+		
+		
+		if (id != -1)
+			displayMessage(" has been deleted!");
+		else
+			displayMessage(" hasn't been deleted"); 
+		
+		db.close();
+
+		break;
+	
+}
+	
+	Intent intent = new Intent(this, MainActivity.class);
+	startActivity(intent);
+}
 	
 	private void displayMessage(String msg) {
 	Toast.makeText(this, msg, Toast.LENGTH_LONG).show();

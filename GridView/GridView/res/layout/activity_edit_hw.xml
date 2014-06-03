@@ -63,5 +63,17 @@
             android:text="Ok"
              />
 
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/babyblue"
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/editHwButton"
+            android:onClick="deleteHw"
+            android:text="Delete" />
+
     </RelativeLayout>
 

@@ -115,12 +115,14 @@ public void updateHw(View view){
 		
 	}
 		
-		
-		finish();
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 		
 	    
 		
 	}
+
+
 	
 	private void displayMessage(String msg) {
 	Toast.makeText(this, msg, Toast.LENGTH_LONG).show();

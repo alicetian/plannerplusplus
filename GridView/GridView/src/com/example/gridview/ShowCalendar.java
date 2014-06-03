@@ -37,6 +37,7 @@ public class ShowCalendar extends ActionBarActivity {
 	private CalendarView cal;
 	private List<Homework> values1;
 	private ArrayAdapter<Homework> adapter;
+	private String date;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class ShowCalendar extends ActionBarActivity {
 			// TODO Auto-generated method stub
 			int month1 = month + 1;
 			
-			String date = year + "-" + month1 + "-" + dayOfMonth;
+			date = year + "-" + month1 + "-" + dayOfMonth;
 			values1 = db.getAssignments(date);
 			
 			Toast.makeText(getBaseContext(),"Selected Date is\n\n"
@@ -151,6 +152,7 @@ public class ShowCalendar extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
+	
 	
 
 }

@@ -37,6 +37,8 @@ public class EditClass extends ActionBarActivity {
 		setContentView(R.layout.activity_edit_class);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+		actionBar.setDisplayUseLogoEnabled(false);
+	    actionBar.setDisplayHomeAsUpEnabled(true);
 		db = new DBAdapterAddClass(this);
 		db.open();
 		editClass = (EditText) findViewById(R.id.editText12);
@@ -58,6 +60,13 @@ public class EditClass extends ActionBarActivity {
         
 
 		
+	}
+	@Override
+	public Intent getSupportParentActivityIntent(){
+		
+		
+		return new Intent(this, ViewClasses.class);
+	    
 	}
 
 	@Override

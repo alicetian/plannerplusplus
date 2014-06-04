@@ -39,6 +39,8 @@ public class EditHw extends ActionBarActivity {
 		setContentView(R.layout.activity_edit_hw);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+		actionBar.setDisplayUseLogoEnabled(false);
+	    actionBar.setDisplayHomeAsUpEnabled(true);
 		db = new DBAdapterAddClass(this);
 		db.open();
 		editClass = (EditText) findViewById(R.id.editClass);
@@ -60,6 +62,13 @@ public class EditHw extends ActionBarActivity {
         
 
 		
+	}
+	@Override
+	public Intent getSupportParentActivityIntent(){
+		
+		
+		return new Intent(this, ShowCalendar.class);
+	    
 	}
 
 	@Override

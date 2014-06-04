@@ -3,6 +3,9 @@ package com.example.gridview;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,11 +20,24 @@ public class AddCoordinates extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_coordinates);
-
+		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+		
+	    actionBar.setDisplayUseLogoEnabled(false);
+	    actionBar.setDisplayHomeAsUpEnabled(true); 
+		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+	}
+	@Override
+	public Intent getSupportParentActivityIntent(){
+		
+		
+		return new Intent(this, MainActivity.class);
+	    
 	}
 
 	@Override

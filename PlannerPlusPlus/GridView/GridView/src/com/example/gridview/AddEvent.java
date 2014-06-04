@@ -7,6 +7,7 @@ import java.util.Calendar;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -46,6 +47,8 @@ public class AddEvent extends ActionBarActivity {
 		setContentView(R.layout.activity_add_event);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+		actionBar.setDisplayUseLogoEnabled(false);
+	    actionBar.setDisplayHomeAsUpEnabled(true); 
 	    Button redirectBtn = (Button) findViewById(R.id.redirectButton);
 	    setTime = (Button) findViewById(R.id.timeDue);
 	    setDate = (Button) findViewById(R.id.dateDue);
@@ -75,6 +78,13 @@ setDate.setOnClickListener(new View.OnClickListener() {
 				showDialog(DATE_DIALOG_ID);
 			}
 		});
+	    
+	}
+	@Override
+	public Intent getSupportParentActivityIntent(){
+		
+		
+		return new Intent(this, MainActivity.class);
 	    
 	}
 

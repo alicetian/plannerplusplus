@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,21 +23,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ViewClasses extends ListActivity {
+public class ViewClasses extends ActionBarActivity {
 
 	
 	
 	private DBAdapterAddClass db;
 	private static List<Classes> classSchedule;
-
+	ListView list;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		android.app.ActionBar actionBar = getActionBar();
+		setContentView(R.layout.list_classes);
+		ActionBar actionBar = getSupportActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+	    actionBar.setDisplayUseLogoEnabled(false);
+	    actionBar.setDisplayHomeAsUpEnabled(true); 
 		
-		
+		list = (ListView) findViewById(R.id.listview);
+
 	    
 		db = new DBAdapterAddClass(this);
 		db.open();
@@ -46,12 +50,12 @@ public class ViewClasses extends ListActivity {
 		
 	    classSchedule = db.getAllClasses();
 		
-		setListAdapter(new ArrayAdapter<Classes>(this, R.layout.list_classes, classSchedule));
+		list.setAdapter(new ArrayAdapter<Classes>(this, android.R.layout.simple_list_item_1, classSchedule));
 
-		ListView listView = getListView();
+		
 		//listView.setTextFilterEnabled(true);
 
-		listView.setOnItemClickListener(new OnItemClickListener() {
+		list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 			    // When clicked, show a toast with the TextView text
@@ -70,12 +74,20 @@ public class ViewClasses extends ListActivity {
 		});
 
 	}
+	
+	@Override
+	public Intent getSupportParentActivityIntent(){
+		
+		
+		return new Intent(this, MainActivity.class);
+	    
+	}
 	public void onResume(){
 		super.onResume();
 		db.open();
 		classSchedule = db.getAllClasses();
 		
-		setListAdapter(new ArrayAdapter<Classes>(this, R.layout.list_classes, classSchedule));
+		list.setAdapter(new ArrayAdapter<Classes>(this, android.R.layout.simple_list_item_1, classSchedule));
 		
 		
 	}

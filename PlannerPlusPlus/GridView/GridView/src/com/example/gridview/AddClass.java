@@ -7,6 +7,7 @@ import com.example.model.Classes;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -34,9 +35,19 @@ public class AddClass extends ActionBarActivity {
 		setContentView(R.layout.activity_add_class);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0000ff")));
+		
+	    actionBar.setDisplayUseLogoEnabled(false);
+	    actionBar.setDisplayHomeAsUpEnabled(true); 
 		db = new DBAdapterAddClass(this);
 		db.open();
 		
+	}
+	@Override
+	public Intent getSupportParentActivityIntent(){
+		
+		
+		return new Intent(this, MainActivity.class);
+	    
 	}
 
 	@Override

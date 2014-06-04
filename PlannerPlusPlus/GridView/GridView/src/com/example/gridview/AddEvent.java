@@ -2,6 +2,8 @@ package com.example.gridview;
 
 
 
+import java.util.Calendar;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -47,6 +49,10 @@ public class AddEvent extends ActionBarActivity {
 	    Button redirectBtn = (Button) findViewById(R.id.redirectButton);
 	    setTime = (Button) findViewById(R.id.timeDue);
 	    setDate = (Button) findViewById(R.id.dateDue);
+	    
+
+	    // set current date into datepicker
+	    
 	    db = new DBAdapterAddClass(this);
 	    db.open();
 	    
@@ -90,11 +96,15 @@ setDate.setOnClickListener(new View.OnClickListener() {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+		
 	}
 
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
+	
+	
+	
 	public static class PlaceholderFragment extends Fragment {
 
 		public PlaceholderFragment() {
@@ -118,13 +128,17 @@ setDate.setOnClickListener(new View.OnClickListener() {
 	       
 	
 	            // set time picker as current time
-	
+	            
 	            return new TimePickerDialog(this, timePickerListener, hour, minute,false);	
 	        }
 	        
 	        else if (id == DATE_DIALOG_ID){
 			   // set date picker as current date
-			   return new DatePickerDialog(this, datePickerListener, 
+	        	Calendar c = Calendar.getInstance();
+	        	year = c.get(Calendar.YEAR);
+	        	month = c.get(Calendar.MONTH);
+	        	day = c.get(Calendar.DAY_OF_MONTH); 
+	        	return new DatePickerDialog(this, datePickerListener, 
 	                         year, month,day);
 			
 	        }

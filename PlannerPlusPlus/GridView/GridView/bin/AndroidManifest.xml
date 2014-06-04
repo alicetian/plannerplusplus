@@ -46,6 +46,10 @@
             android:name="com.example.gridview.EditHw"
             android:label="@string/title_activity_edit_hw" >
         </activity>
+        <activity
+            android:name="com.example.gridview.AddCoordinates"
+            android:label="@string/title_activity_add_coordinates" >
+        </activity>
     </application>
 
 </manifest>

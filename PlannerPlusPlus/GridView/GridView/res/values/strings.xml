@@ -24,5 +24,6 @@
     <string name="days_attending">Enter Days of Class ex. "Monday, Wednesday"</string>
     <string name="title_activity_edit_class">EditClass</string>
     <string name="title_activity_edit_hw">EditHw</string>
+    <string name="title_activity_add_coordinates">AddCoordinates</string>
 
 </resources>

@@ -52,6 +52,10 @@ public class MainActivity extends ActionBarActivity {
 		            else if (position == 2){
 		            	intent = new Intent(MainActivity.this, AddClass.class);
 		            }
+		            
+		            else if (position == 4){
+		            	intent = new Intent(MainActivity.this, AddCoordinates.class);
+		            }
 		            startActivity(intent);
 		        }
 		    });

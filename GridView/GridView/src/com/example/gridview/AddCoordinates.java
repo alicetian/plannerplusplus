@@ -12,10 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 import android.os.Build;
 
 public class AddCoordinates extends ActionBarActivity {
 
+	private EditText addName;
+	private EditText addLon;
+	private EditText addLat;
+	private DBAdapterAddClass db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,6 +33,8 @@ public class AddCoordinates extends ActionBarActivity {
 		
 	    actionBar.setDisplayUseLogoEnabled(false);
 	    actionBar.setDisplayHomeAsUpEnabled(true); 
+	    db = new DBAdapterAddClass(this);
+		db.open();
 		
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -75,6 +84,47 @@ public class AddCoordinates extends ActionBarActivity {
 					container, false);
 			return rootView;
 		}
+	}
+	
+public void addCoordinates(View view){
+		
+		addName = (EditText) findViewById(R.id.editText1);
+	    addLon = (EditText) findViewById(R.id.editText3);
+	    addLat = (EditText) findViewById(R.id.editText2);
+	    
+	    String addName2 = addName.getText().toString();
+	    Double longitude = Double.parseDouble(addLon.getText().toString());
+	    Double latitude = Double.parseDouble(addLat.getText().toString());
+	    
+	    
+		
+		switch(view.getId()) {
+		case R.id.button1:
+
+			// insertUser() method will insert a user and return a row ID
+			long id = db.insertCOO(addName2, longitude, latitude);
+			
+			// if the row ID is -1 there was some error, otherwise it was successful
+			if (id != -1)
+				displayMessage(addName2 + " inserted!");
+			else
+				displayMessage(addName2 + " wasn't inserted?"); 
+			
+			db.close();
+
+			break;
+		
+	}
+		
+		
+		finish();
+		
+	    
+		
+	}
+
+	private void displayMessage(String msg) {
+		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}
 
 }

@@ -40,6 +40,12 @@ public class DBAdapterAddClass {
 	public static final String HW_Time = "time";
 	public static final String HW_Date = "dateDue";
 
+	
+	public static final String COO_ID = "_id";
+	public static final String COO_Name = "name";
+	public static final String COO_Lon = "longitude";
+	public static final String COO_Lat = "latitude";
+	
 
 	// define some SQLite database fields
 	// Take a look at your DB on the emulator with:
@@ -48,6 +54,7 @@ public class DBAdapterAddClass {
 	private static final String DB_NAME = "db_example";
 	private static final String DB_TABLE = "classes";
 	private static final String DB_TABLE2 = "assignments";
+	private static final String DB_TABLE3 = "coordinates";
 	private static final int    DB_VER = 1;
 
 	// a SQL statement to create a new table
@@ -58,6 +65,9 @@ public class DBAdapterAddClass {
 			"CREATE TABLE assignments (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 			 "class TEXT NOT NULL, description TEXT NOT NULL, time TEXT NOT NULL, dateDue date NOT NULL);";
 
+	private static final String DB_COO = 
+			"CREATE TABLE coordinates (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+			 "name TEXT NOT NULL, longitude DOUBLE NOT NULL, latitude DOUBLE NOT NULL);";
 	// define an extension of the SQLiteOpenHelper to handle the
 	// creation and upgrade of a table
 	private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -75,6 +85,7 @@ public class DBAdapterAddClass {
 			// Execute our DB_CREATE statement
 			db.execSQL(DB_Class);
 			db.execSQL(DB_HW);
+			db.execSQL(DB_COO);
 		}
 		
 		// called by the parent when a DB needs to be upgraded
@@ -83,6 +94,7 @@ public class DBAdapterAddClass {
 			// If we were really upgrading we'd try to move data over
 			db.execSQL("DROP TABLE IF EXISTS "+DB_TABLE);
 			db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE2);
+			db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE3);
 			onCreate(db);
 		}
 	}
@@ -146,6 +158,18 @@ public class DBAdapterAddClass {
 		vals.put(HW_Date, dateDue);
 		
 		return db.insert(DB_TABLE2, null, vals);
+	}
+	
+public long insertCOO(String name, Double lon, Double lat) {
+		
+		ContentValues vals = new ContentValues();
+		
+		vals.put(COO_Name, name);
+		vals.put(COO_Lon, lon);
+		vals.put(COO_Lat, lat);
+		
+		
+		return db.insert(DB_TABLE3, null, vals);
 	}
 	
 	public long updateClass(Classes classes){
